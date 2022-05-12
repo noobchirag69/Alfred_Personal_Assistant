@@ -67,6 +67,15 @@ def takeCommand():
     return query
 
 
+# Note taking fucntion
+def note(text):
+    date = datetime.datetime.now()
+    file_name = str(date).replace(":", "-") + "-note.txt"
+    with open(file_name, "w") as f:
+        f.write(text)
+    subprocess.Popen(["/usr/bin/gedit", file_name])
+
+
 # Functionalities of Alfred
 def runAlfred():
     print("Tell me how can I help you...")
@@ -91,6 +100,15 @@ def runAlfred():
         speak("According to Wikipedia")
         print(results)
         speak(results)
+
+    # To take notes
+    elif 'take note' in query:
+        print("What should I note?")
+        speak("What should I note?")
+        strNote = takeCommand()
+        note(strNote) # Calling the note taking fucntion defined earlier
+        print("Your words have been noted.")
+        speak("Your words have been noted.")
 
     # Browser actions using WebBrowser
     elif 'open youtube' in query:
@@ -180,7 +198,7 @@ def runAlfred():
         print(songs)
         opener = "open" if sys.platform == "darwin" else "xdg-open"
         subprocess.call([opener, os.path.join(music_dir, songs[num])])
-
+    
     # Time using DateTime
     elif 'the time' in query:
         strTime = datetime.datetime.now().strftime("%I:%M %p")
