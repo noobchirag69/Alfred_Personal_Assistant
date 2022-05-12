@@ -94,13 +94,13 @@ def runAlfred():
 
     # Browser actions using WebBrowser
     elif 'open youtube' in query:
-        web.open("youtube.com")
+        web.open('youtube.com')
 
     elif 'open google' in query:
-        web.open("google.com")
+        web.open('google.com')
 
     elif 'open whatsapp' in query:
-        web.open("web.whatsapp.com")
+        web.open('web.whatsapp.com')
 
     elif 'open reddit' in query:
         web.open('reddit.com')
@@ -116,6 +116,39 @@ def runAlfred():
 
     elif 'open mail' in query:
         web.open('mail.google.com')
+
+    elif 'open facebook' in query:
+        web.open('facebook.com')
+
+    elif 'open linkedin' in query:
+        web.open('linkedin.com')
+
+    elif 'open drive' in query:
+        web.open('drive.google.com')
+    
+    elif 'open github' in query:
+        web.open('github.com')
+
+    elif 'twitter' in query:
+        web.open('twitter.com')
+
+    elif 'canva' in query:
+        web.open('canva.com')
+
+    elif 'open keep' in query:
+        web.open('keep.google.com')
+
+    elif 'open meet' in query:
+        web.open('meet.google.com')
+
+    elif 'open map' in query or 'open maps' in query:
+        web.open('maps.google.com')
+
+    elif 'open movies' in query or 'open movie' in query:
+        web.open('watchserieshd.bz/home')
+
+    elif 'open code' in query:
+        web.open('onlinegdb.com')
 
     # Locate a place in Google Maps using WebBrowser
     elif "where is" in query:
