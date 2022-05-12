@@ -13,7 +13,7 @@ import pyjokes  # For fetching jokes
 import requests # For sending HTTP requests
 import wolframalpha # For geopraphical, computational or GK questions
 import random # For playing a random song from Music directory
-import pyautogui
+import pyautogui # For taking screenshot
 from bs4 import BeautifulSoup # For pulling news out of news website
 
 
@@ -85,8 +85,8 @@ def runAlfred():
 
     # Identity
     if 'who are you' in query:
-        print("I am Alfred, your personal assistant! I was created by Mr. Chirag Chakraborty in the year 2022. As of now, I am programmed to open a few websites, play music from your device, play songs on YouTube, search on Google, fetch info from Wikipedia, giving you the present time, read out today's news headlines from BBC, answer some geographical as well as computational questions, locate a place in Google Maps and entertain you with one-liner programming jokes.")
-        speak("I am Alfred, your personal assistant! I was created by Mr. Cheerag Chakraborty in the year 2022. As of now, I am programmed to open a few websites, play music from your device, play songs on YouTube, search on Google, fetch info from Wikipedia, giving you the present time, read out today's news headlines from BBC, answer some geographical as well as computational questions, locate a place in Google Maps and entertain you with one-liner programming jokes.")
+        print("I am Alfred, your personal assistant! I was created by Mr. Chirag Chakraborty in the year 2022. As of now, I am programmed to open a few websites, play music from your device, play songs on YouTube, search on Google, fetch info from Wikipedia, giving you the present time, read out today's news headlines from BBC, answer some geographical as well as computational questions, locate a place in Google Maps, take screenshots, save your notes and entertain you with one-liner programming jokes.")
+        speak("I am Alfred, your personal assistant! I was created by Mr. Cheerag Chakraborty in the year 2022. As of now, I am programmed to open a few websites, play music from your device, play songs on YouTube, search on Google, fetch info from Wikipedia, giving you the present time, read out today's news headlines from BBC, answer some geographical as well as computational questions, locate a place in Google Maps, take screenshots, save your notes and entertain you with one-liner programming jokes.")
 
     elif 'who made you' in query or 'who created you' in query:
         print("I was created by Mr. Chirag Chakraborty.")
