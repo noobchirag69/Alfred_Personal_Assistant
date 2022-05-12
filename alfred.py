@@ -168,6 +168,9 @@ def runAlfred():
     elif 'open code' in query:
         web.open('onlinegdb.com')
 
+    elif 'open data bases' in query:
+        web.open('localhost/phpmyadmin')
+
     # Locate a place in Google Maps using WebBrowser
     elif "where is" in query:
         query = query.replace("where is", "")
@@ -198,7 +201,7 @@ def runAlfred():
         print(songs)
         opener = "open" if sys.platform == "darwin" else "xdg-open"
         subprocess.call([opener, os.path.join(music_dir, songs[num])])
-    
+
     # Time using DateTime
     elif 'the time' in query:
         strTime = datetime.datetime.now().strftime("%I:%M %p")
