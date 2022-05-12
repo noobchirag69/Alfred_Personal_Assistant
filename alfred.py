@@ -12,6 +12,7 @@ import pywhatkit as pw  # For some specific functionalities like google search
 import pyjokes  # For fetching jokes
 import requests # For sending HTTP requests
 import wolframalpha # For geopraphical, computational or GK questions
+import random # For playing a random song from Music directory
 from bs4 import BeautifulSoup # For pulling news out of news website
 
 
@@ -142,9 +143,10 @@ def runAlfred():
     elif 'play music' in query:
         music_dir = '/home/chirag/Music'
         songs = os.listdir(music_dir)
+        num = random.randint(0, 12)
         print(songs)
         opener = "open" if sys.platform == "darwin" else "xdg-open"
-        subprocess.call([opener, os.path.join(music_dir, songs[0])])
+        subprocess.call([opener, os.path.join(music_dir, songs[num])])
 
     # Time using DateTime
     elif 'the time' in query:
