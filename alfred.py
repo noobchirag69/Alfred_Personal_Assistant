@@ -85,8 +85,8 @@ def runAlfred():
 
     # Identity
     if 'who are you' in query:
-        print("I am Alfred, your personal assistant! I was created by Mr. Chirag Chakraborty in the year 2022. As of now, I am programmed to open a few websites, play music from your device, play songs on YouTube, search on Google, fetch info from Wikipedia, giving you the present time, read out today's news headlines from BBC, answer some geographical as well as computational questions, locate a place in Google Maps, take screenshots, save your notes and entertain you with one-liner programming jokes.")
-        speak("I am Alfred, your personal assistant! I was created by Mr. Cheerag Chakraborty in the year 2022. As of now, I am programmed to open a few websites, play music from your device, play songs on YouTube, search on Google, fetch info from Wikipedia, giving you the present time, read out today's news headlines from BBC, answer some geographical as well as computational questions, locate a place in Google Maps, take screenshots, save your notes and entertain you with one-liner programming jokes.")
+        print("I am Alfred, your personal assistant! I was created by Mr. Chirag Chakraborty in the year 2022. As of now, I am programmed to open a few websites, play music from your device, play songs on YouTube, search on Google, fetch info from Wikipedia, giving you the present time, enlighten you on the current weather conditions around the world, read out today's news headlines from BBC, answer some geographical as well as computational questions, locate a place in Google Maps, take screenshots, save your notes and entertain you with one-liner programming jokes.")
+        speak("I am Alfred, your personal assistant! I was created by Mr. Cheerag Chakraborty in the year 2022. As of now, I am programmed to open a few websites, play music from your device, play songs on YouTube, search on Google, fetch info from Wikipedia, giving you the present time, enlighten you on the current weather conditions around the world, read out today's news headlines from BBC, answer some geographical as well as computational questions, locate a place in Google Maps, take screenshots, save your notes and entertain you with one-liner programming jokes.")
 
     elif 'who made you' in query or 'who created you' in query:
         print("I was created by Mr. Chirag Chakraborty.")
@@ -227,10 +227,10 @@ def runAlfred():
         print("According to BBC...")
         speak("According to BBC")
         
-        for x in list(dict.fromkeys(headlines)):
-            if x.text.strip() not in unwanted:
-                print(x.text.strip())
-                speak(x.text.strip())
+        for m in list(dict.fromkeys(headlines)):
+            if m.text.strip() not in unwanted:
+                print(m.text.strip())
+                speak(m.text.strip())
 
     # For questions
     elif 'ask' in query:
@@ -269,6 +269,32 @@ def runAlfred():
         screen.save(imageName)
         print('Screenshot has been taken.')
         speak('Screenshot has been taken.')
+
+    # Weather
+    elif 'weather' in query:
+        api_key = "60e6a50272af81d3cffa81bc0dadf7f9"
+        base_url = "http://api.openweathermap.org/data/2.5/weather?"
+        print('Please mention the city.')
+        speak('Please mention the city.')
+        city = takeCommand()
+        complete_url = base_url + "q=" + city + "&appid=" + api_key + "&units=metric"
+        api_link = requests.get(complete_url)
+        api_data = api_link.json()
+
+        if api_data["cod"] != "404":
+            temperature = ((api_data['main']['temp']))
+            weatherDescription = api_data['weather'][0]['description']
+            humidity = api_data['main']['humidity']
+            windSpeed = api_data['wind']['speed']
+            pressure = api_data['main']['pressure']
+
+            print("Temperature (in Celsius) = " +str(temperature)+"\n Pressure (in hPa unit) = "+str(pressure) +"\n Humidity (in percentage) = " +str(humidity) +"\n Wind Speed (in m/s) = " +str(windSpeed) +"\n Description = " +str(weatherDescription))
+            speak("Temperature (in Celsius) = " +str(temperature)+"\n Pressure (in hPa unit) ="+str(pressure) +"\n Humidity (in percentage) = " +str(humidity) +"\n Wind Speed (in m/s) =" +str(windSpeed) +"\n Description = " +str(weatherDescription))
+             
+        else:
+            print("Sorry, city Not Found.")
+            speak("Sorry, city Not Found.")
+
 
     # Exit
     elif 'good bye' in query:
