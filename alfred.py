@@ -1,7 +1,7 @@
 # Importing necessary modules
 import pyttsx3  # Fpr speaking functionality
 import speech_recognition as sr  # To recognize user's voice
-import datetime  # To know date and time
+import datetime as dt  # To know date and time
 import sounddevice as sd  # To remove audio errors
 import wikipedia  # For fetching info from Wikipedia
 import webbrowser as web  # For opening websites
@@ -13,6 +13,7 @@ import pyjokes  # For fetching jokes
 import requests # For sending HTTP requests
 import wolframalpha # For geopraphical, computational or GK questions
 import random # For playing a random song from Music directory
+import pyautogui
 from bs4 import BeautifulSoup # For pulling news out of news website
 
 
@@ -30,7 +31,7 @@ def speak(audio):
 
 # Wish Function
 def wishMe():
-    hour = int(datetime.datetime.now().hour)
+    hour = int(dt.datetime.now().hour)
     if hour >= 0 and hour < 12:
         print("Good Morning!")
         speak("Good Morning!")
@@ -69,7 +70,7 @@ def takeCommand():
 
 # Note taking fucntion
 def note(text):
-    date = datetime.datetime.now()
+    date = dt.datetime.now()
     file_name = str(date).replace(":", "-") + "-note.txt"
     with open(file_name, "w") as f:
         f.write(text)
@@ -204,7 +205,7 @@ def runAlfred():
 
     # Time using DateTime
     elif 'the time' in query:
-        strTime = datetime.datetime.now().strftime("%I:%M %p")
+        strTime = dt.datetime.now().strftime("%I:%M %p")
         print(f"The time is {strTime}\n")
         speak(f"The time is {strTime}\n")
 
@@ -261,6 +262,13 @@ def runAlfred():
             print("Sorry, No results!")
             speak("Sorry, no results!")
 
+    # Taking Screenshot
+    elif 'screenshot' in query:
+        screen = pyautogui.screenshot()
+        imageName = str(dt.datetime.now()).replace(":", "-") + "-image.png"
+        screen.save(imageName)
+        print('Screenshot has been taken.')
+        speak('Screenshot has been taken.')
 
     # Exit
     elif 'good bye' in query:
