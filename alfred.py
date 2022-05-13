@@ -86,6 +86,7 @@ def runAlfred():
     # Identity
     if 'who are you' in query:
         print("I am Alfred, your personal assistant! I was created by Mr. Chirag Chakraborty in the year 2022. As of now, I am programmed to open a few websites, play music from your device, play songs on YouTube, search on Google, fetch info from Wikipedia, giving you the present time, enlighten you on the current weather conditions around the world, read out today's news headlines from BBC, answer some geographical as well as computational questions, locate a place in Google Maps, take screenshots, save your notes and entertain you with one-liner programming jokes.")
+
         speak("I am Alfred, your personal assistant! I was created by Mr. Cheerag Chakraborty in the year 2022. As of now, I am programmed to open a few websites, play music from your device, play songs on YouTube, search on Google, fetch info from Wikipedia, giving you the present time, enlighten you on the current weather conditions around the world, read out today's news headlines from BBC, answer some geographical as well as computational questions, locate a place in Google Maps, take screenshots, save your notes and entertain you with one-liner programming jokes.")
 
     elif 'who made you' in query or 'who created you' in query:
@@ -280,6 +281,7 @@ def runAlfred():
         complete_url = base_url + "q=" + city + "&appid=" + api_key + "&units=metric"
         api_link = requests.get(complete_url)
         api_data = api_link.json()
+        degreeSign = u"\N{DEGREE SIGN}"
 
         if api_data["cod"] != "404":
             temperature = ((api_data['main']['temp']))
@@ -288,8 +290,19 @@ def runAlfred():
             windSpeed = api_data['wind']['speed']
             pressure = api_data['main']['pressure']
 
-            print("Temperature (in Celsius) = " +str(temperature)+"\n Pressure (in hPa unit) = "+str(pressure) +"\n Humidity (in percentage) = " +str(humidity) +"\n Wind Speed (in m/s) = " +str(windSpeed) +"\n Description = " +str(weatherDescription))
-            speak("Temperature (in Celsius) = " +str(temperature)+"\n Pressure (in hPa unit) ="+str(pressure) +"\n Humidity (in percentage) = " +str(humidity) +"\n Wind Speed (in m/s) =" +str(windSpeed) +"\n Description = " +str(weatherDescription))
+            print("According to the Weather API, " + city + " is experiencing" 
+                "\nTemperature of " + str(temperature) + " " + degreeSign + "C" 
+                "\nPressure of "+ str(pressure) + " hPa" 
+                "\nHumidity of " + str(humidity) + " %" 
+                "\nWind Speed of " + str(windSpeed) + " m/s" 
+                "\nWeather Description: " + str(weatherDescription).upper())
+            
+            speak("According to the Weather API" + city + "is experiencing")
+            speak("Temperature of " + str(temperature) + "degree Celcius" 
+                "\nPressure of " + str(pressure) + "hectopascal" 
+                "\nHumidity of " + str(humidity) + "percent"
+                "\nWind Speed of " + str(windSpeed) + "meter per second" 
+                "\nThe weather describes " + str(weatherDescription))
              
         else:
             print("Sorry, city Not Found.")
