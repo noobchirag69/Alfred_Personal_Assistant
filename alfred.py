@@ -77,6 +77,67 @@ def note(text):
     subprocess.Popen(["/usr/bin/gedit", file_name])
 
 
+# Game playing Function
+def game():
+
+    print("Okay, I challenge you to a game of Rock-Paper-Scissor!")
+    speak("Okay, I challenge you to a game of Rock-Paper-Scissor!")
+
+    # Validation function
+    def validate(hand):
+        if hand < 0 or hand > 2:
+            return False
+        return True
+
+    # Hand function
+    def printHand(hand, name = 'Guest'):
+        hands = ['Rock', 'Paper', 'Scissor']
+        print(name + ' picked: ' + hands[hand])
+        speak(name + 'picked' + hands[hand])
+
+    # Judging function
+    def judge(player, alfred):
+
+        # Add control flow based on the comparison of player and computer
+        if player == alfred:
+            return 'It is a tie. You may try Again.'
+        elif player == 0 and alfred == 1:
+            return 'You lose. Better luck next time.'
+        elif player == 1 and alfred == 2:
+            return 'You lose. Better luck next time.'
+        elif player == 2 and alfred == 0:
+            return 'You lose. Better luck next time.'
+        else:
+            return 'Congratulations. You have won.'
+
+    print('--- Starting the Rock-Paper-Scissor Game ---')
+    speak('Starting the Rock Paper Scissor Game')
+    speak('Please enter your name')
+    playerName = takeCommand()
+
+    print('Pick a hand: (0: Rock, 1: Paper, 2: Scissor)')
+    speak("Pick a hand. Press 0 for Rock, 1 for Paper and 2 for Scissor.")
+    speak("Please enter a number between 0 and 2.")
+    playerHand = int(input('Please enter a number between 0 and 2: '))
+
+    if validate(playerHand):
+        alfredHand = random.randint(0,2)
+
+        printHand(playerHand, playerName)
+        printHand(alfredHand, 'Alfred')
+
+        # Assign the return value of judge to the result variable
+        result = judge(playerHand, alfredHand)
+
+        # Print the result variable
+        print(result)
+        speak(result)
+
+    else:
+        print('Invalid Number...')
+        speak("Invalid Number")
+
+
 # Functionalities of Alfred
 def runAlfred():
     print("Tell me how can I help you...")
@@ -94,6 +155,7 @@ def runAlfred():
         speak("I was created by Mr. Cheerag Chakraborty.")
 
     # Logic for executing tasks based on query
+
     # Fetch info from Wikipedia
     elif 'wikipedia' in query:
         speak('Searching Wkipedia...')
@@ -308,6 +370,9 @@ def runAlfred():
             print("Sorry, city Not Found.")
             speak("Sorry, city Not Found.")
 
+    # Game
+    elif 'game' in query:
+        game()
 
     # Exit
     elif 'good bye' in query:
